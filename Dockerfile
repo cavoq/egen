@@ -14,4 +14,3 @@ FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
 WORKDIR /egen
 COPY --from=build /egen/out ./
 
-CMD ["./egen"]

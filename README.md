@@ -22,3 +22,7 @@ dotnet cake --target <target>
 - **Default** - Runs the CLI tool.
 - **Build** - Builds the CLI tool.
 - **Run** - Runs the CLI tool.
+- **Clean** - Cleans build.
+- **Test** - Runs tests.
+- **docker-build** - Builds the docker image.
+- **docker-run** - Shells into the docker container.

@@ -41,8 +41,19 @@ Task("build")
     });
 });
 
+Task("test")
+    .IsDependentOn("build")
+    .Does(() =>
+{
+    Information("Testing the app inside container environment...");
+
+    StartProcess("dotnet", new ProcessSettings
+    {
+        Arguments = $"test -c Release"
+    });
+});
+
 Task("run")
-    .IsDependentOn("clean")
     .IsDependentOn("build")
     .Does(() =>
 {
