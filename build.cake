@@ -6,31 +6,53 @@ var project = "egen";
 // TASKS
 //////////////////////////////////////////////////////////////////////
 
-Task("Build")
-    .IsDependentOn("Clean")
+Task("docker-build")
     .Does(() =>
 {
-    Information("Building the application...");
+    Information("Building the docker-image...");
 
-    StartProcess("docker", new ProcessSettings 
+    StartProcess("docker", new ProcessSettings
     {
         Arguments = $"build -t {project}:{version} ."
     });
 });
 
-Task("Run")
-    .IsDependentOn("Build")
+Task("docker-run")
+    .IsDependentOn("docker-build")
     .Does(() =>
 {
-    Information("Running the application...");
+    Information("Shell into docker-container...");
 
-    StartProcess("docker", new ProcessSettings 
+    StartProcess("docker", new ProcessSettings
     {
         Arguments = $"run -it {project}:{version} /bin/bash",
     });
 });
 
-Task("Clean")
+Task("build")
+    .IsDependentOn("clean")
+    .Does(() =>
+{
+    Information("Building the application...");
+
+    StartProcess("dotnet", new ProcessSettings
+    {
+        Arguments = $"build -c Release"
+    });
+});
+
+Task("run")
+    .IsDependentOn("clean")
+    .IsDependentOn("build")
+    .Does(() =>
+{
+    StartProcess("dotnet", new ProcessSettings
+    {
+        Arguments = $"run -c Release"
+    });
+});
+
+Task("clean")
     .Does(() =>
 {
     Information("Cleaning build artifacts...");
@@ -39,9 +61,9 @@ Task("Clean")
     CleanDirectory("./out");
 });
 
-Task("Default")
-    .IsDependentOn("Build")
-    .IsDependentOn("Run");
+Task("default")
+    .IsDependentOn("build")
+    .IsDependentOn("run");
 
 //////////////////////////////////////////////////////////////////////
 // EXECUTION
