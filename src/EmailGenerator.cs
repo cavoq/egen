@@ -25,7 +25,7 @@ namespace Egen
             for (int i = 0; i < domains.Length; ++i) 
             {
                 uint length = 16;
-                string randomDomain = domains[random.Next(defaultDomains.Length)];
+                string randomDomain = domains[random.Next(domains.Length)];
                 
                 emails[i] = GenerateRandomEmail(length, randomDomain, chars); 
             }
