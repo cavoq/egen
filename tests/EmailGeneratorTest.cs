@@ -1,14 +1,16 @@
 using Xunit;
 using Egen;
 
-public class EmailGeneratorTests
-{
-    [Fact]
-    public void GenerateRandomEmail_Length10()
+namespace EgenTest {
+    public class EmailGeneratorTests
     {
-        var emailGenerator = new EmailGenerator();
-        string result = emailGenerator.GenerateRandomEmail(10);
-        Assert.NotNull(result);
-        Assert.Contains("@", result);
+        [Fact]
+        public void GenerateRandomEmail_Length10()
+        {
+            var emailGenerator = new EmailGenerator();
+            string result = emailGenerator.GenerateRandomEmail(10);
+            Assert.NotNull(result);
+            Assert.Contains("@", result);
+        }
     }
 }

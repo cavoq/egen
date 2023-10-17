@@ -1,6 +1,3 @@
-
-using System.Reflection.Metadata;
-
 namespace Egen
 {
     public class EmailGenerator
