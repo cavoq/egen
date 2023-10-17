@@ -1,4 +1,9 @@
 # egen
+
+![license](https://img.shields.io/badge/license-BSD-brightgreen.svg)
+![version](https://img.shields.io/badge/version-0.0.2-lightgrey.svg)
+![build](https://img.shields.io/github/actions/workflow/status/cavoq/egen/workflow.yml)
+
 CLI Tool for email analysis and generation.
 
 ## Developer Notes:
