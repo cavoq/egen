@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: debian-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
@@ -25,7 +25,7 @@ jobs:
         run: dotnet cake --target build
 
   test:
-    runs-on: debian-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
@@ -46,7 +46,7 @@ jobs:
         run: dotnet cake --target test
 
   docker-build:
-    runs-on: debian-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
