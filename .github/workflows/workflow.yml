@@ -3,7 +3,7 @@ name: Egen-CI
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   clean:
