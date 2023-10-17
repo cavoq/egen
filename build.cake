@@ -17,7 +17,7 @@ Task("docker-build")
     });
 });
 
-Task("docker-run")
+Task("docker-shell")
     .IsDependentOn("docker-build")
     .Does(() =>
 {

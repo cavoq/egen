@@ -20,7 +20,7 @@ namespace Egen
         public string[] GenerateEmails(string[]? domainList = null, string chars = defaultChars)
         {
             string[] domains = domainList ?? defaultDomains;
-            string[] emails = Array.Empty<string>();
+            string[] emails = new string[domains.Length];
             
             for (int i = 0; i < domains.Length; ++i) 
             {

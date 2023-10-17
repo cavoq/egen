@@ -1,0 +1,61 @@
+name: Egen-CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  clean:
+
+    runs-on: debian-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+    
+    - name: Set up .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '7.0.402'
+
+    - name: Clean Artifacts
+      run: dotnet cake --target clean
+
+  build:
+
+    runs-on: debian-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '7.0.402'
+
+    - name: Restore Dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build -c Release
+
+    - name: Test
+      run: dotnet test -c Release
+
+  docker-build:
+
+    runs-on: debian-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '7.0.402'
+
+    - name: Build Docker Image
+      run: dotnet cake --target docker-build
