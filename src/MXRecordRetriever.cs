@@ -28,7 +28,7 @@ namespace Egen
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error: Could not get mx records", ex);
             }
         }
     }

@@ -8,7 +8,7 @@ namespace EgenTest
         [Fact]
         public void PerformLookup_ReturnsExpectedResult()
         {
-            string domain = "google.com";
+            string domain = "gmail.com";
             string result = WhoisLookup.PerformLookup(domain);
 
             Console.WriteLine(result);

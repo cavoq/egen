@@ -7,7 +7,6 @@ namespace EgenTest {
         [Fact]
         public void TestValidEmails()
         {
-            EmailValidator validator = new EmailValidator();
             string[] validEmails = new string[]
             {
                 "test@example.com",
