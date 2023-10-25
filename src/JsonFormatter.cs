@@ -14,5 +14,11 @@ namespace Egen
             }));
             return $"{{\n{formattedString}\n}}";
         }
+
+        public string Format(string[] input)
+        {
+            string[] formattedStrings = input.Select(Format).ToArray();
+            return $"[\n{string.Join(",\n", formattedStrings)}\n]";
+        }
     }
 }
