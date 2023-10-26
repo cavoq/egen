@@ -24,7 +24,7 @@ namespace EgenTest
             string content = "Test Content";
             string filePath = "";
 
-            Exception ex = Assert.Throws<Exception>(() => Utils.SaveToFile(content, filePath));
+            Exception ex = Assert.Throws<FileNotFoundException>(() => Utils.SaveToFile(content, filePath));
             Assert.Contains("Error:", ex.Message);
         }
     }
