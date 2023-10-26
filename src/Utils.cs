@@ -6,7 +6,7 @@ namespace Egen
         {
             if (filePath.Equals(""))
             {
-                throw new Exception("Error: File path invalid");
+                throw new FileNotFoundException("Error: File path invalid");
             }
 
             try
@@ -16,6 +16,38 @@ namespace Egen
             catch (Exception ex)
             {
                 throw new Exception("Error: Could not safe content to file", ex);
+            }
+        }
+
+        public static string[] ReadListFromFile(string filePath)
+        {
+            try
+            {
+                if (!File.Exists(filePath))
+                {
+                    throw new FileNotFoundException($"File not found: {filePath}");
+                }
+                return File.ReadAllLines(filePath);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error: Could not read file", ex);
+            }
+        }
+
+        public static string ReadCharactersFromFile(string filePath)
+        {
+            try
+            {
+                if (!File.Exists(filePath))
+                {
+                    throw new FileNotFoundException($"File not found: {filePath}");
+                }
+                return File.ReadAllText(filePath);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error: Could not read file", ex);
             }
         }
     }
