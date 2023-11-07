@@ -19,11 +19,11 @@ namespace Egen
             }
         }
 
-        public static string[] ReadListFromFile(string filePath)
+        public static string[] ReadListFromFile(string? filePath)
         {
             try
             {
-                if (!File.Exists(filePath))
+                if (!File.Exists(filePath) || filePath == null)
                 {
                     throw new FileNotFoundException($"File not found: {filePath}");
                 }
@@ -35,11 +35,11 @@ namespace Egen
             }
         }
 
-        public static string ReadCharactersFromFile(string filePath)
+        public static string ReadCharactersFromFile(string? filePath)
         {
             try
             {
-                if (!File.Exists(filePath))
+                if (!File.Exists(filePath) || filePath == null)
                 {
                     throw new FileNotFoundException($"File not found: {filePath}");
                 }

@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using CommandLine;
 
 namespace Egen.Options
@@ -7,11 +8,11 @@ namespace Egen.Options
         [Option('l', "length", Default = 10, HelpText = "Length of generated emails")]
         public int EmailLength { get; set; }
 
-        [Option('d', "domains", Default = "resources/defaultDomains.txt", HelpText = "Path to the file containing list of domains")]
-        public string DomainsFilePath { get; set; }
+        [Option('d', "domains", HelpText = "Path to the file containing list of domains")]
+        public string? DomainsFilePath { get; set; }
 
-        [Option('c', "chars", Default = "resources/defaultChars.txt", HelpText = "Path to the file containing allowed characters")]
-        public string AllowedCharactersFilePath { get; set; }
+        [Option('c', "chars", HelpText = "Path to the file containing allowed characters")]
+        public string? AllowedCharactersFilePath { get; set; }
 
         public string[] GetDomainList()
         {   
