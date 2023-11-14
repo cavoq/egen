@@ -1,6 +1,5 @@
 using CommandLine;
 using Egen.Options;
-using NuGet.Frameworks;
 
 namespace Egen.Cmd
 {
