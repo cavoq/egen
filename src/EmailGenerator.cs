@@ -2,32 +2,32 @@ namespace Egen
 {
     public class EmailGenerator
     {
-        private const string defaultChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        private readonly string[] defaultDomains = { "gmail.com", "yahoo.com", "hotmail.com", "example.com" };
+        private readonly int minEmailLength = 6;
         private readonly Random random = new Random();
 
-        public string GenerateRandomEmail(uint length = 16, string? customDomain = null, string chars = defaultChars)
+        public string GenerateRandomEmail(int length, string domain, string chars)
         {
-            string domain = customDomain ?? defaultDomains[random.Next(defaultDomains.Length)];
+            if (length < minEmailLength) {
+                throw new ArgumentException($"Email length must be at least {minEmailLength}");
+            }
 
-            string username = GenerateRandomString((int)length, chars);
+            string username = GenerateRandomString(length, chars);
             string email = $"{username}@{domain}";
 
             return email;
         }
 
         // TODO: Support different formats
-        public string[] GenerateEmails(string[]? domainList = null, string chars = defaultChars)
+        public string[] GenerateEmails(string[] domains, string chars)
         {
-            string[] domains = domainList ?? defaultDomains;
             string[] emails = new string[domains.Length];
-            
-            for (int i = 0; i < domains.Length; ++i) 
+
+            for (int i = 0; i < domains.Length; ++i)
             {
-                uint length = 16;
+                int length = 16;
                 string randomDomain = domains[random.Next(domains.Length)];
-                
-                emails[i] = GenerateRandomEmail(length, randomDomain, chars); 
+
+                emails[i] = GenerateRandomEmail(length, randomDomain, chars);
             }
 
             return emails;

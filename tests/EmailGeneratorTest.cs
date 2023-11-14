@@ -8,7 +8,7 @@ namespace EgenTest {
         public void GenerateRandomEmail_Length10()
         {
             var emailGenerator = new EmailGenerator();
-            string result = emailGenerator.GenerateRandomEmail(10);
+            string result = emailGenerator.GenerateRandomEmail(10, "example.com", "abcdefghijklmnopqrstuvwxyz");
             Assert.NotNull(result);
             Assert.Contains("@", result);
             Assert.Equal(10, result.Split("@")[0].Length);
