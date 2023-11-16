@@ -1,8 +1,9 @@
 {
-    "modules": {
-        "emailgenerator": {
-            "defaultchars": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
-            "defaultdomains": ["gmail.com", "yahoo.com", "hotmail.com", "example.com"]
+    "Modules": {
+        "EmailGenerator": {
+            "DefaultChars": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+            "DefaultDomains": ["gmail.com", "yahoo.com", "hotmail.com", "example.com"],
+            "DefaultEmailLength": 10
         }
     }
 }

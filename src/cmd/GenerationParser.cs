@@ -17,6 +17,9 @@ namespace Egen.Cmd
                     options.EmailLength = opts.EmailLength;
                     options.DomainsFilePath = opts.DomainsFilePath;
                     options.AllowedCharactersFilePath = opts.AllowedCharactersFilePath;
+                }).WithNotParsed(errs =>
+                {
+                    Parser.Default.ParseArguments<GenerationOptions>(new string[] { "--help" });
                 });
         }
 
@@ -29,7 +32,7 @@ namespace Egen.Cmd
         {
             string? allowedCharacters = options.GetAllowedCharacters();
             string[]? domains = options.GetDomainList();
-            int length = options.EmailLength;
+            int length = options.GetEmailLength();
 
             string[] emails = emailGenerator.GenerateEmails(domains, allowedCharacters, length);
             Console.WriteLine(string.Join("\n", emails));

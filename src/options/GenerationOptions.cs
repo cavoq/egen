@@ -1,6 +1,6 @@
-using System.ComponentModel;
 using CommandLine;
 using Egen.Config;
+using Tokens.Extensions;
 
 namespace Egen.Options
 {
@@ -16,6 +16,16 @@ namespace Egen.Options
 
         [Option('c', "chars", HelpText = "Path to the file containing allowed characters")]
         public string? AllowedCharactersFilePath { get; set; }
+
+        public int GetEmailLength()
+        {
+            if (config.DefaultEmailLength != 0 && EmailLength < 6)
+            {
+                return config.DefaultEmailLength;
+            }
+
+            return EmailLength;
+        }
 
         public string[] GetDomainList()
         {

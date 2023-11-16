@@ -1,4 +1,3 @@
-using System.Net;
 using Egen.Cmd;
 using Egen.Config;
 

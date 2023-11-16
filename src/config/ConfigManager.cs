@@ -20,7 +20,7 @@ namespace Egen.Config
                 return default;
             }
 
-            if (_configData.TryGetValue("modules", out var modules) && modules is JObject modulesDict)
+            if (_configData.TryGetValue("Modules", out var modules) && modules is JObject modulesDict)
             {
                 if (modulesDict.TryGetValue(moduleName, out var module) && module is JObject moduleJObject)
                 {
