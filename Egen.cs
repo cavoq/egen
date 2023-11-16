@@ -13,7 +13,7 @@ namespace Egen
 
             if (args.Length == 0) return;
             
-            IParser? parser = null;
+            IModuleParser? parser = null;
             IModuleConfig? config = null;
 
             string moduleIdentifier = args[0];

@@ -2,7 +2,7 @@ using Egen.Config;
 
 namespace Egen.Cmd
 {
-    public interface IParser
+    public interface IModuleParser
     {
         void ParseArguments(string[] args);
         void ParseConfig(IModuleConfig config);

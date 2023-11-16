@@ -18,13 +18,12 @@ namespace Egen
         }
 
         // TODO: Support different formats
-        public string[] GenerateEmails(string[] domains, string chars)
+        public string[] GenerateEmails(string[] domains, string chars, int length)
         {
             string[] emails = new string[domains.Length];
 
             for (int i = 0; i < domains.Length; ++i)
             {
-                int length = 16;
                 string randomDomain = domains[random.Next(domains.Length)];
 
                 emails[i] = GenerateRandomEmail(length, randomDomain, chars);

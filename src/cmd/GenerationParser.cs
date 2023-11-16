@@ -4,7 +4,7 @@ using Egen.Options;
 
 namespace Egen.Cmd
 {
-    public class GenerationParser : IParser
+    public class GenerationParser : IModuleParser
     {
         private GenerationOptions options = new GenerationOptions();
         private readonly EmailGenerator emailGenerator = new EmailGenerator();
@@ -22,15 +22,16 @@ namespace Egen.Cmd
 
         public void ParseConfig(IModuleConfig moduleConfig)
         {
-            options.config = (EmailGeneratorConfig) moduleConfig;
+            options.config = (EmailGeneratorConfig)moduleConfig;
         }
 
         public void RunModule()
         {
             string? allowedCharacters = options.GetAllowedCharacters();
             string[]? domains = options.GetDomainList();
+            int length = options.EmailLength;
 
-            string[] emails = emailGenerator.GenerateEmails(domains, allowedCharacters);
+            string[] emails = emailGenerator.GenerateEmails(domains, allowedCharacters, length);
             Console.WriteLine(string.Join("\n", emails));
         }
     }

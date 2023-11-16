@@ -21,7 +21,7 @@ namespace EgenTest {
             string chars = "abcdefghijklmnopqrstuvwxyz";
             EmailGenerator generator = new EmailGenerator();
 
-            string[] emails = generator.GenerateEmails(domains, chars);
+            string[] emails = generator.GenerateEmails(domains, chars, 16);
 
             Assert.NotNull(emails);
             Assert.Equal(domains.Length, emails.Length);
