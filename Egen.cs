@@ -14,6 +14,7 @@ namespace Egen
             if (args.Length == 0) return;
             
             IParser? parser = null;
+            IModuleConfig? config = null;
 
             string moduleIdentifier = args[0];
             string[] moduleArgs = new string[args.Length - 1];
@@ -22,14 +23,15 @@ namespace Egen
             switch (moduleIdentifier)
             {
                 case "gen":
-                    IModuleConfig? config = configManager.GetModuleConfig<EmailGeneratorConfig>("emailgenerator");
-                    if (config == null) return;
-                    parser = new GenerationParser(config);
+                    config = configManager.GetModuleConfig<EmailGeneratorConfig>("emailgenerator");
+                    parser = new GenerationParser();
                     break;
             }
 
             if (parser == null) return;
-            Runner.RunModule(parser, moduleArgs);
+            if (config == null) return;
+
+            Runner.RunModule(parser, config, moduleArgs);
         }
     }
 }

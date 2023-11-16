@@ -6,8 +6,9 @@ namespace Egen
 {
     class Runner
     {
-        public static void RunModule(IParser parser, string[] args)
+        public static void RunModule(IParser parser, IModuleConfig config, string[] args)
         {
+            parser.ParseConfig(config);
             parser.ParseArguments(args);
             parser.RunModule();
         }

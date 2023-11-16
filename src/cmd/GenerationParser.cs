@@ -6,13 +6,8 @@ namespace Egen.Cmd
 {
     public class GenerationParser : IParser
     {
-        private GenerationOptions options;
+        private GenerationOptions options = new GenerationOptions();
         private readonly EmailGenerator emailGenerator = new EmailGenerator();
-
-        public GenerationParser(IModuleConfig config)
-        {
-            options = new GenerationOptions(config);
-        }
 
         public void ParseArguments(string[] args)
         {
@@ -23,6 +18,11 @@ namespace Egen.Cmd
                     options.DomainsFilePath = opts.DomainsFilePath;
                     options.AllowedCharactersFilePath = opts.AllowedCharactersFilePath;
                 });
+        }
+
+        public void ParseConfig(IModuleConfig moduleConfig)
+        {
+            options.config = (EmailGeneratorConfig) moduleConfig;
         }
 
         public void RunModule()

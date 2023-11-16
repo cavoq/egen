@@ -6,11 +6,7 @@ namespace Egen.Options
 {
     public class GenerationOptions
     {
-        private readonly EmailGeneratorConfig config;
-        public GenerationOptions(IModuleConfig config)
-        {
-            this.config = (EmailGeneratorConfig)config;
-        }
+        public EmailGeneratorConfig config = new EmailGeneratorConfig();
 
         [Option('l', "length", Default = 10, HelpText = "Length of generated emails")]
         public int EmailLength { get; set; }
