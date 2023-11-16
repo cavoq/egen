@@ -1,3 +1,6 @@
+using System.Net;
+using Egen.Config;
+
 namespace Egen
 {
     public static class Utils

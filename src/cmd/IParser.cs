@@ -1,3 +1,5 @@
+using Egen.Config;
+
 namespace Egen.Cmd
 {
     public interface IParser

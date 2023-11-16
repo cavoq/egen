@@ -1,10 +1,17 @@
-using System.Runtime.CompilerServices;
+using System.ComponentModel;
 using CommandLine;
+using Egen.Config;
 
 namespace Egen.Options
 {
     public class GenerationOptions
     {
+        private readonly EmailGeneratorConfig config;
+        public GenerationOptions(IModuleConfig config)
+        {
+            this.config = (EmailGeneratorConfig)config;
+        }
+
         [Option('l', "length", Default = 10, HelpText = "Length of generated emails")]
         public int EmailLength { get; set; }
 
@@ -15,12 +22,22 @@ namespace Egen.Options
         public string? AllowedCharactersFilePath { get; set; }
 
         public string[] GetDomainList()
-        {   
+        {
+            if (DomainsFilePath == null && config.DefaultDomains != null)
+            {
+                return config.DefaultDomains;
+            }
+
             return Utils.ReadListFromFile(DomainsFilePath);
         }
 
         public string GetAllowedCharacters()
         {
+            if (AllowedCharactersFilePath == null && config.DefaultChars != null)
+            {
+                return config.DefaultChars;
+            }
+
             return Utils.ReadCharactersFromFile(AllowedCharactersFilePath);
         }
     }
