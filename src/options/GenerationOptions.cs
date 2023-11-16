@@ -1,6 +1,5 @@
 using CommandLine;
 using Egen.Config;
-using Tokens.Extensions;
 
 namespace Egen.Options
 {
@@ -16,6 +15,9 @@ namespace Egen.Options
 
         [Option('c', "chars", HelpText = "Path to the file containing allowed characters")]
         public string? AllowedCharactersFilePath { get; set; }
+
+        [Option('h', "help", HelpText = "Show help for email generation module")]
+        public bool Help { get; set; }
 
         public int GetEmailLength()
         {
@@ -45,6 +47,27 @@ namespace Egen.Options
             }
 
             return Utils.ReadCharactersFromFile(AllowedCharactersFilePath);
+        }
+
+        public void DisplayHelp()
+        {
+            Console.WriteLine("Usage: egen gen [OPTIONS]");
+            Console.WriteLine();
+            Console.WriteLine("Generate emails");
+            Console.WriteLine();
+            Console.WriteLine("Options:");
+
+            var properties = typeof(GenerationOptions).GetProperties();
+            foreach (var property in properties)
+            {
+                var optionAttribute = property.GetCustomAttributes(typeof(OptionAttribute), false).FirstOrDefault() as OptionAttribute;
+                if (optionAttribute != null)
+                {
+                    var optionNames = $"{(optionAttribute.ShortName != null ? $"-{optionAttribute.ShortName}, " : string.Empty)}--{optionAttribute.LongName}";
+                    var helpText = optionAttribute.HelpText;
+                    Console.WriteLine($"  {optionNames.PadRight(20)} {helpText}");
+                }
+            }
         }
     }
 }

@@ -19,16 +19,21 @@ namespace Egen.Cmd
 
         public void ParseArguments(string[] args)
         {
+            Parser parser = new Parser(settings =>
+            {
+                settings.HelpWriter = Console.Out;
+            });
+
             if (args.Length == 0)
             {
-                Parser.Default.ParseArguments<EgenOptions>(new string[] { "--help" });
+                parser.ParseArguments<EgenOptions>(new string[] { "--help" });
                 return;
             }
 
             string moduleIdentifier = args[0];
-            moduleArgs = new string[args.Length - 1];
+            moduleArgs = args.Skip(1).ToArray();
 
-            Parser.Default.ParseArguments<EgenOptions>(args)
+            parser.ParseArguments<EgenOptions>(args.Take(1).ToArray())
                 .WithParsed(opts =>
                 {
                     if (opts.ModuleName == "gen")
