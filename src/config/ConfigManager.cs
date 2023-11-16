@@ -3,11 +3,11 @@ using Newtonsoft.Json.Linq;
 
 namespace Egen.Config
 {
-    public class ConfigurationManager
+    public class ConfigManager
     {
         private readonly Dictionary<string, object>? _configData;
 
-        public ConfigurationManager(string configFilePath)
+        public ConfigManager(string configFilePath)
         {
             string configJson = File.ReadAllText(configFilePath);
             _configData = JsonConvert.DeserializeObject<Dictionary<string, object>>(configJson);
@@ -20,11 +20,11 @@ namespace Egen.Config
                 return default;
             }
 
-            if (_configData.TryGetValue("modules", out var modules) && modules is Dictionary<string, object> modulesDict)
+            if (_configData.TryGetValue("modules", out var modules) && modules is JObject modulesDict)
             {
-                if (modulesDict.TryGetValue(moduleName, out var moduleData) && moduleData is JObject moduleConfig)
+                if (modulesDict.TryGetValue(moduleName, out var module) && module is JObject moduleJObject)
                 {
-                    return moduleConfig.ToObject<T>();
+                    return moduleJObject.ToObject<T>();
                 }
             }
 
