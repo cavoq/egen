@@ -6,8 +6,7 @@ namespace Egen.Cmd
 {
     public class EgenParser
     {
-        private EgenOptions options = new EgenOptions();
-        private ConfigManager config;
+        private readonly ConfigManager config;
         private IModuleParser? moduleParser;
         private IModuleConfig? moduleConfig;
         private string[]? moduleArgs;
@@ -22,11 +21,13 @@ namespace Egen.Cmd
             Parser parser = new Parser(settings =>
             {
                 settings.HelpWriter = Console.Out;
+                settings.AutoHelp = false;
+                settings.AutoVersion = false;
             });
 
             if (args.Length == 0)
             {
-                parser.ParseArguments<EgenOptions>(new string[] { "--help" });
+                EgenOptions.DisplayHelp();
                 return;
             }
 

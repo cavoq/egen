@@ -49,7 +49,7 @@ namespace Egen.Options
             return Utils.ReadCharactersFromFile(AllowedCharactersFilePath);
         }
 
-        public void DisplayHelp()
+        public static void DisplayHelp()
         {
             Console.WriteLine("Usage: egen gen [OPTIONS]");
             Console.WriteLine();
@@ -60,8 +60,7 @@ namespace Egen.Options
             var properties = typeof(GenerationOptions).GetProperties();
             foreach (var property in properties)
             {
-                var optionAttribute = property.GetCustomAttributes(typeof(OptionAttribute), false).FirstOrDefault() as OptionAttribute;
-                if (optionAttribute != null)
+                if (property.GetCustomAttributes(typeof(OptionAttribute), false).FirstOrDefault() is OptionAttribute optionAttribute)
                 {
                     var optionNames = $"{(optionAttribute.ShortName != null ? $"-{optionAttribute.ShortName}, " : string.Empty)}--{optionAttribute.LongName}";
                     var helpText = optionAttribute.HelpText;

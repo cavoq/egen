@@ -1,7 +1,6 @@
 using CommandLine;
 using Egen.Config;
 using Egen.Options;
-using Tokens.Extensions;
 
 namespace Egen.Cmd
 {
@@ -37,7 +36,7 @@ namespace Egen.Cmd
         {
             if (options.Help)
             {
-                options.DisplayHelp();
+                GenerationOptions.DisplayHelp();
                 return;
             }
 
