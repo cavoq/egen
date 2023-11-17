@@ -10,7 +10,7 @@ namespace EgenTest
         {
             string testConfigJson = @"
             {
-                ""modules"": {
+                ""Modules"": {
                     ""emailgenerator"": {
                         ""defaultchars"": ""ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"",
                         ""defaultdomains"": [""gmail.com"", ""yahoo.com"", ""hotmail.com"", ""example.com""]

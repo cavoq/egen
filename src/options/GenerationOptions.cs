@@ -16,6 +16,9 @@ namespace Egen.Options
         [Option('c', "chars", HelpText = "Path to the file containing allowed characters")]
         public string? AllowedCharactersFilePath { get; set; }
 
+        [Option('a', "amount", Default = 10, HelpText = "Amount of emails to generate")]
+        public int Amount { get; set; }
+
         [Option('h', "help", HelpText = "Show help for email generation module")]
         public bool Help { get; set; }
 

@@ -6,7 +6,7 @@ namespace Egen.Cmd
 {
     public class GenerationParser : IModuleParser
     {
-        private GenerationOptions options = new GenerationOptions();
+        private readonly GenerationOptions options = new GenerationOptions();
         private readonly EmailGenerator emailGenerator = new EmailGenerator();
         private readonly Parser moduleParser = new Parser(settings =>
         {
@@ -24,6 +24,7 @@ namespace Egen.Cmd
                     options.EmailLength = opts.EmailLength;
                     options.DomainsFilePath = opts.DomainsFilePath;
                     options.AllowedCharactersFilePath = opts.AllowedCharactersFilePath;
+                    options.Amount = opts.Amount;
                 });
         }
 
@@ -43,8 +44,9 @@ namespace Egen.Cmd
             string? allowedCharacters = options.GetAllowedCharacters();
             string[]? domains = options.GetDomainList();
             int length = options.GetEmailLength();
+            int amount = options.Amount;
 
-            string[] emails = emailGenerator.GenerateEmails(domains, allowedCharacters, length);
+            string[] emails = emailGenerator.GenerateEmails(domains, allowedCharacters, length, amount);
             Console.WriteLine(string.Join("\n", emails));
         }
     }

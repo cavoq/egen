@@ -21,10 +21,10 @@ namespace EgenTest {
             string chars = "abcdefghijklmnopqrstuvwxyz";
             EmailGenerator generator = new EmailGenerator();
 
-            string[] emails = generator.GenerateEmails(domains, chars, 16);
+            string[] emails = generator.GenerateEmails(domains, chars, 16, 10);
 
             Assert.NotNull(emails);
-            Assert.Equal(domains.Length, emails.Length);
+            Assert.Equal(10, emails.Length);
             foreach (string email in emails)
             {
                 Assert.True(EmailValidator.IsValidEmail(email));
