@@ -18,7 +18,6 @@ Task("docker-build")
 });
 
 Task("docker-shell")
-    .IsDependentOn("docker-build")
     .Does(() =>
 {
     Information("Shell into docker-container...");
@@ -54,7 +53,6 @@ Task("test")
 });
 
 Task("run")
-    .IsDependentOn("build")
     .Does(() =>
 {
     StartProcess("dotnet", new ProcessSettings
