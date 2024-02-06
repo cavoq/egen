@@ -40,6 +40,18 @@ Task("build")
     });
 });
 
+Task("publish")
+    .IsDependentOn("build")
+    .Does(() =>
+{
+    Information("Publishing the application...");
+
+    StartProcess("dotnet", new ProcessSettings
+    {
+        Arguments = $"publish -c Release"
+    });
+});
+
 Task("test")
     .IsDependentOn("build")
     .Does(() =>
